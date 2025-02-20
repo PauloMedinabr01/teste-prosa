@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Interfaces;
+
+use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use RuntimeException;
+
+/**
+ * Class UserRepositoryInterface
+ * @package App\Http\Controllers
+ */
+interface UserRepositoryInterface
+{
+    /**
+     * Retorna todos os registros paginados.
+     * @param string $search
+     * @return LengthAwarePaginator
+     * @throws RuntimeException
+     */
+    public function all(string $search): LengthAwarePaginator;
+
+    /**
+     * Cria um novo registro.
+     * @param array $data
+     * @return User
+     * @throws RuntimeException
+     */
+    public function create(array $data): User;
+
+    /**
+     * Atualiza um registro com base no ID.
+     * @param array $data
+     * @param string $id
+     * @return User
+     * @throws RuntimeException
+     */
+    public function update(array $data, string $id): User;
+
+    /**
+     * Deleta um registro com base no ID.
+     * @param string $id
+     * @return bool
+     * @throws RuntimeException
+     */
+    public function delete(string $id): bool;
+
+    /**
+     * Retorna um registro com base no ID.
+     * @param string $id
+     * @return User
+     * @throws RuntimeException
+     */
+    public function show(string $id): User;
+}
