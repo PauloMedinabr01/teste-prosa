@@ -24,10 +24,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');
 
-    Route::get('/users/{id}', [UsersController::class, 'show'])
-        ->where('id', '[0-9]+')
-        ->name('users.show');
-
     Route::get('/users/{id}/edit', [UsersController::class, 'edit'])
         ->where('id', '[0-9]+')
         ->name('users.edit');
