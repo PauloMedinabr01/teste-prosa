@@ -6,8 +6,8 @@ use App\Models\Cliente;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
- * Class ClienteServiceInterface
- * @package App\Http\Controllers
+ * Interface ClienteServiceInterface
+ * @package App\Interfaces
  */
 interface ClienteServiceInterface
 {

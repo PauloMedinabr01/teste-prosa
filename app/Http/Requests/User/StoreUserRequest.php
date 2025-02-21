@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+/**
+ * Class StoreUserRequest
+ * @package App\Http\Requests\User
+ */
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,24 +29,21 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes',
+            'name' => [
+                'required',
                 'string',
                 'min:2',
                 'max:255'
             ],
             'email' => [
-                'sometimes',
+                'required',
                 'string',
                 'lowercase',
                 'email',
                 'max:255',
-                'unique:users,email,' .
-                $this->route(
-                    'id'
-                )
-            ],
+                Rule::unique(User::class)->ignore($this->user()->id)],
             'password' => [
-                'sometimes',
+                'required',
                 'string',
                 'min:8',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/'

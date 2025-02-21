@@ -9,7 +9,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class UserService
- * @package App\Http\Controllers
+ * @package App\Services\User
  */
 class UserService implements UserServiceInterface
 {

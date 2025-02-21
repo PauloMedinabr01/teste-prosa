@@ -4,9 +4,10 @@ namespace Database\Factories;
 
 use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
+ *  Class ClienteFactory
+ * @package App\databases\factories
  * @extends Factory<Cliente>
  */
 class ClienteFactory extends Factory

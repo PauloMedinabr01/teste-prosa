@@ -11,7 +11,7 @@ use RuntimeException;
 
 /**
  * Class UserRepository
- * @package App\Http\Controllers
+ * @package App\Repository
  */
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
@@ -74,6 +74,11 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         try {
             $user = $this->model::findOrFail($id);
+
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+
             $user->update($data);
             return $user;
         } catch (Exception $e) {

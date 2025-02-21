@@ -6,8 +6,8 @@ use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
- * Class UserServiceInterface
- * @package App\Http\Controllers
+ * Interface UserServiceInterface
+ * @package App\Interfaces
  */
 interface UserServiceInterface
 {

@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+/**
+ * Class UpdateUserRequest
+ * @package App\Http\Requests\User
+ */
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,20 +28,24 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => [
-                'required',
+                'sometimes',
                 'string',
                 'min:2',
                 'max:255'
             ],
             'email' => [
-                'required',
+                'sometimes',
                 'string',
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id)],
+                'unique:users,email,' .
+                $this->route(
+                    'id'
+                )
+            ],
             'password' => [
-                'required',
+                'nullable',
                 'string',
                 'min:8',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/'

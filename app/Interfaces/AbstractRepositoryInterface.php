@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use RuntimeException;
 
 /**
- * Class AbstractRepositoryInterface
- * @package App\Http\Controllers
+ * Interface AbstractRepositoryInterface
+ * @package App\Interfaces
  */
 interface AbstractRepositoryInterface
 {

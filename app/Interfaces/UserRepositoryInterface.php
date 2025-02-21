@@ -7,8 +7,8 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use RuntimeException;
 
 /**
- * Class UserRepositoryInterface
- * @package App\Http\Controllers
+ * Interface UserRepositoryInterface
+ * @package App\Interfaces
  */
 interface UserRepositoryInterface
 {

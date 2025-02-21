@@ -6,6 +6,10 @@ use App\Interfaces\ClienteRepositoryInterface;
 use App\Repository\ClienteRepository;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class ClienteServiceProvider
+ * @package App\Providers
+ */
 class ClienteServiceProvider extends ServiceProvider
 {
     /**

@@ -5,6 +5,10 @@ namespace Database\Seeders;
 use App\Models\Cliente;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class ClienteSeeder
+ * @package App\Seeders
+ */
 class ClienteSeeder extends Seeder
 {
     /**

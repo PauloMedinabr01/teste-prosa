@@ -9,7 +9,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class ClienteService
- * @package App\Http\Controllers
+ * @package App\Services\Cliente
  */
 class ClienteService implements ClienteServiceInterface
 {

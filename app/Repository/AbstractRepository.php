@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\App;
 
 /**
  * Class AbstractRepository
- * @package App\Http\Controllers
+ * @package App\Repository
  */
 abstract class AbstractRepository implements AbstractRepositoryInterface
 {

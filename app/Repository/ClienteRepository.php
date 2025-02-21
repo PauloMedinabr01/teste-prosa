@@ -11,7 +11,7 @@ use RuntimeException;
 
 /**
  * Class ClienteRepository
- * @package App\Http\Controllers
+ * @package App\Repository
  */
 class ClienteRepository extends AbstractRepository implements ClienteRepositoryInterface
 {
