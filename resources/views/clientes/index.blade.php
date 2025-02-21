@@ -34,7 +34,7 @@
                             </a>
 
                             <button
-                                    class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                                 Filtrar
                             </button>
                         </form>
@@ -113,17 +113,19 @@
         <div class="flex items-center justify-center min-h-screen">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div
-                    class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full">
+                class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full">
                 <div class="bg-white dark:bg-gray-800 p-6 text-gray-900 dark:text-gray-100">
                     <h3 id="modal-name" class="text-lg font-medium"></h3>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-email"></span></p>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-telephone"></span></p>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-zip_code"></span></p>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-telephone"></span>
+                    </p>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-zip_code"></span>
+                    </p>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Email: <span id="modal-address"></span></p>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Criado em: <span
-                                id="modal-created_at"></span></p>
+                            id="modal-created_at"></span></p>
                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Última Atualização: <span
-                                id="modal-updated_at"></span></p>
+                            id="modal-updated_at"></span></p>
                 </div>
                 <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 flex justify-end space-x-3">
 

@@ -47,7 +47,7 @@ class ClientesController extends Controller
     {
         $data = $request->all();
         $this->clienteService->criarCliente($data);
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
     }
 
     /**
@@ -82,7 +82,7 @@ class ClientesController extends Controller
     {
         $data = $request->all();
         $this->clienteService->atualizarCliente($data, $id);
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
     }
 
     /**
@@ -94,6 +94,6 @@ class ClientesController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $this->clienteService->deletarCliente($id);
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('success', 'Cliente deletado com sucesso!');
     }
 }

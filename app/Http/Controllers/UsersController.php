@@ -49,7 +49,7 @@ class UsersController extends Controller
     {
         $data = $storeUserRequest->validated();
         $this->userService->criarUsuario($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso!');
     }
 
     /**
@@ -84,7 +84,7 @@ class UsersController extends Controller
     {
         $data = $updateUserRequest->validated();
         $this->userService->atualizarUsuario($data, $id);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso!');
     }
 
     /**
@@ -96,6 +96,6 @@ class UsersController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $this->userService->deletarUsuario($id);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
     }
 }
