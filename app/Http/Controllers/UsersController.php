@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Services\User\UserService;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -14,7 +16,7 @@ use Illuminate\Http\Request;
  */
 class UsersController extends Controller
 {
-    /** @var UserService */
+    /** @var UserService $userService */
     private UserService $userService;
 
     /**
@@ -40,12 +42,12 @@ class UsersController extends Controller
 
     /**
      * Cria um novo usuário.
-     * @param Request $request
+     * @param StoreUserRequest $storeUserRequest
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserRequest $storeUserRequest): RedirectResponse
     {
-        $data = $request->all();
+        $data = $storeUserRequest->validated();
         $this->userService->criarUsuario($data);
         return redirect()->route('users.index');
     }
@@ -74,13 +76,13 @@ class UsersController extends Controller
 
     /**
      * Atualiza um usuário.
-     * @param Request $request
+     * @param UpdateUserRequest $updateUserRequest
      * @param string $id
      * @return RedirectResponse
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(UpdateUserRequest $updateUserRequest, string $id): RedirectResponse
     {
-        $data = $request->all();
+        $data = $updateUserRequest->validated();
         $this->userService->atualizarUsuario($data, $id);
         return redirect()->route('users.index');
     }
