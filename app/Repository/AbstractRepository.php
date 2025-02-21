@@ -61,6 +61,7 @@ abstract class AbstractRepository implements AbstractRepositoryInterface
     abstract public function show(string $id): Model;
 
     /**
+     * Adiciona filtros à consulta.
      * @param Builder $query
      * @param string $search
      * @return Builder
