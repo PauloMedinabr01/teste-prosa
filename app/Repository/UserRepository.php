@@ -30,6 +30,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         try {
             return $this->model::query()
+                ->select('id', 'name', 'email', 'created_at', 'updated_at')
                 ->where(function ($query) use ($search) {
                     self::addFilters($query, $search);
                 })
