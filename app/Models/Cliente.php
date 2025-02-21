@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Clientes
  * @package App\Http\Controllers
  */
-class Clientes extends Model
+class Cliente extends Model
 {
+    use HasFactory;
+
     /**
      * The table associated with the model.
      *
@@ -27,6 +30,6 @@ class Clientes extends Model
         'email',
         'telephone',
         'zip_code',
-        'endereco',
+        'address',
     ];
 }

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Cliente\ClienteService;
+use Exception;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -10,58 +14,86 @@ use Illuminate\Http\Request;
  */
 class ClientesController extends Controller
 {
+    /** @var ClienteService */
+    private ClienteService $clienteService;
+
     /**
-     * Display a listing of the resource.
+     * UserController constructor.
+     * @param ClienteService $clienteService
      */
-    public function index()
+    public function __construct(ClienteService $clienteService)
     {
+        $this->clienteService = $clienteService;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Retorna a view com todos os clientes.
+     * @param Request $request
+     * @return View
      */
-    public function create()
+    public function index(Request $request): View
     {
-        //
+        $search = (string)$request->input('search', '');
+        $clientes = $this->clienteService->obterTodosClientes($search);
+        return view('clientes.index', compact('clientes'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Cria um novo cliente.
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $data = $request->all();
+        $this->clienteService->criarCliente($data);
+        return redirect()->route('clientes.index');
     }
 
     /**
-     * Display the specified resource.
+     * Retorna a view para criar um novo cliente.
+     * @return View
+     * @throws Exception
      */
-    public function show(string $id)
+    public function create(): View
     {
-        //
+        return view('clientes.create');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Retorna a view para editar um cliente.
+     * @param string $id
+     * @return View|RedirectResponse
+     * @throws Exception
      */
-    public function edit(string $id)
+    public function edit(string $id): View|RedirectResponse
     {
-        //
+        $cliente = $this->clienteService->obterCliente($id);
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza um cliente.
+     * @param Request $request
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $data = $request->all();
+        $this->clienteService->atualizarCliente($data, $id);
+        return redirect()->route('clientes.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deleta um cliente.
+     * @param string $id
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $this->clienteService->deletarCliente($id);
+        return redirect()->route('clientes.index');
     }
 }
