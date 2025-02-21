@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Services\User\UserService;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -14,26 +14,28 @@ use Illuminate\Http\Request;
  */
 class UsersController extends Controller
 {
+    /** @var UserService */
+    private UserService $userService;
+
     /**
-     * Retorna a view com todos os usuários.
-     * @return View
+     * UserController constructor.
+     * @param UserService $userService
      */
-    public function index(): View
+    public function __construct(UserService $userService)
     {
-        $users = User::paginate(10);
-        return view('users.index', compact('users'));
+        $this->userService = $userService;
     }
 
     /**
-     * Retorna a view para mostrar um usuário.
-     * @param string $id
+     * Retorna a view com todos os usuários.
+     * @param Request $request
      * @return View
-     * @throws Exception
      */
-    public function show(string $id): View
+    public function index(Request $request): View
     {
-        $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
+        $search = (string)$request->input('search', '');
+        $users = $this->userService->obterTodosUsuarios($search);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -44,7 +46,7 @@ class UsersController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->all();
-        User::create($data);
+        $this->userService->criarUsuario($data);
         return redirect()->route('users.index');
     }
 
@@ -66,7 +68,7 @@ class UsersController extends Controller
      */
     public function edit(string $id): View|RedirectResponse
     {
-        $user = User::findOrFail($id);
+        $user = $this->userService->obterUsuario($id);
         return view('users.edit', compact('user'));
     }
 
@@ -79,20 +81,19 @@ class UsersController extends Controller
     public function update(Request $request, string $id): RedirectResponse
     {
         $data = $request->all();
-        $user = User::findOrFail($id);
-        $user->update($data);
+        $this->userService->atualizarUsuario($data, $id);
         return redirect()->route('users.index');
     }
 
     /**
+     * Deleta um usuário.
      * @param string $id
      * @return RedirectResponse
      * @throws Exception
      */
     public function destroy(string $id): RedirectResponse
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $this->userService->deletarUsuario($id);
         return redirect()->route('users.index');
     }
 }
